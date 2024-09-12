@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public interface UtilisateurControler {
 
-    @PostMapping("/postUser")
+    @PostMapping("/user")
      ResponseEntity<String> postUser(@RequestBody Utilisateur utilisateur);
 
-    @GetMapping("/getUser/{userId}")
+    @GetMapping("/user/{userId}")
      ResponseEntity<Utilisateur> getUser(@PathVariable("userId") String userId);
 
-    @PatchMapping("/updateUser/{userId}")
-     ResponseEntity<String> updatePassword(@PathVariable("userId") String userId,
-                                           @RequestParam("pwd") String pwd);
+    @PatchMapping("/user/{userId}")
+     ResponseEntity<String> updatePassword(@PathVariable("userId") String userid, @RequestBody String pwd);
 
-    @DeleteMapping("/deleteUser/{userId}")
+    @DeleteMapping("/user/{userId}")
      ResponseEntity<String> deleteUser(@PathVariable("userId") String userId);
 }

@@ -30,6 +30,15 @@ public class Utilisateur {
         this.role = role;
     }
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }

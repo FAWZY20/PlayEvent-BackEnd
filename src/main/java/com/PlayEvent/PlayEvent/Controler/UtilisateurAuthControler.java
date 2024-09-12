@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface UtilisateurAuthControler {
 
-    @PostMapping("/login-success")
-    public ResponseEntity<?> loginSuccess(@RequestBody Utilisateur utilisateur);
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Utilisateur utilisateur);
 
 }
