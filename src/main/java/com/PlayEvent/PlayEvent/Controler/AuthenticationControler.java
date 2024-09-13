@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public interface UtilisateurAuthControler {
+public interface AuthenticationControler {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Utilisateur utilisateur);
