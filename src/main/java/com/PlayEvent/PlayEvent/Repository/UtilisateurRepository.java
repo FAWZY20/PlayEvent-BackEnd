@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface UtilisateurRepository extends MongoRepository<Utilisateur, UUID> {
+public interface UtilisateurRepository extends MongoRepository<Utilisateur, String> {
 
     void deleteById(ObjectId objectId);
 
