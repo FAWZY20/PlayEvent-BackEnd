@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Document("evenement")
+@Document(collection ="evenement")
 public class Evenement {
 
     @Id
@@ -25,11 +25,12 @@ public class Evenement {
 
     private String description;
 
-    private List<Music> musique;
+    private Playlist playlist;
 
     private List<String> utilisateurID;
 
     private String animateurID;
+
     private String status;
 
     public Evenement(String nom,
@@ -38,7 +39,7 @@ public class Evenement {
                      LocalTime heureFin,
                      String lieu,
                      String description,
-                     List<Music> musique,
+                     Playlist musique,
                      List<String> utilisateurID,
                      String animateurID,
                      String status) {
@@ -48,7 +49,7 @@ public class Evenement {
         this.heureFin = heureFin;
         this.lieu = lieu;
         this.description = description;
-        this.musique = musique;
+        this.playlist = musique;
         this.utilisateurID = utilisateurID;
         this.animateurID = animateurID;
         this.status = status;
@@ -110,14 +111,6 @@ public class Evenement {
         this.description = description;
     }
 
-    public List<Music> getMusique() {
-        return musique;
-    }
-
-    public void setMusique(List<Music> musique) {
-        this.musique = musique;
-    }
-
     public List<String> getUtilisateurID() {
         return utilisateurID;
     }
@@ -134,6 +127,13 @@ public class Evenement {
         this.animateurID = animateurID;
     }
 
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
     public String getStatus() {
         return status;
     }

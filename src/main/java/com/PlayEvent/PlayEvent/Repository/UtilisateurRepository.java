@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 
 @Repository
 public interface UtilisateurRepository extends MongoRepository<Utilisateur, String> {
@@ -16,6 +15,6 @@ public interface UtilisateurRepository extends MongoRepository<Utilisateur, Stri
 
     Utilisateur findUtilisateurById(ObjectId objectId);
 
-    @Aggregation(pipeline = {"{ '$match': { 'mail': ?0, 'pwd': ?1 } }", "{ '$project': { 'mail': 1, 'nom': 1, 'prenom': 1, '_id': 0, } }" })
+    @Aggregation(pipeline = {"{ '$match': { 'mail': ?0, 'pwd': ?1 } }", "{ '$project': { 'mail': 1, 'nom': 1, 'prenom': 1, '_id': 1, } }" })
     Utilisateur getByMailAndPassword(String mail, String password);
 }

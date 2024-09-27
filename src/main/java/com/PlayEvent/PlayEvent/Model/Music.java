@@ -1,11 +1,9 @@
 package com.PlayEvent.PlayEvent.Model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Music {
-
-    @Id
-    private String id;
 
     private String titre;
 
@@ -17,23 +15,16 @@ public class Music {
 
     private String genre;
 
-    private String fichier;
-
     public Music(String titre, String artiste, String album, String duree, String genre, String fichier) {
         this.titre = titre;
         this.artiste = artiste;
         this.album = album;
         this.duree = duree;
         this.genre = genre;
-        this.fichier = fichier;
     }
 
-    public String getId() {
-        return id;
-    }
+    public Music(){
 
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitre() {
@@ -74,14 +65,6 @@ public class Music {
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public String getFichier() {
-        return fichier;
-    }
-
-    public void setFichier(String fichier) {
-        this.fichier = fichier;
     }
 
 }

@@ -38,7 +38,7 @@ public class AuthenticationService implements AuthenticationControler {
     public ResponseEntity<?> login(Utilisateur utilisateur) {
         Utilisateur uti = utilisateurRepository.getByMailAndPassword(utilisateur.getMail(), utilisateur.getPwd());
         try{
-            String token = generateToken(utilisateur.getMail());
+            String token = generateToken(uti.getId());
             Map<String, Object> response = new HashMap<>();
             response.put("token", token);
             return new ResponseEntity<>(response, HttpStatus.OK);
