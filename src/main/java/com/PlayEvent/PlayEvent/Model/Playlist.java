@@ -23,10 +23,6 @@ public class Playlist {
         this.musique = musique;
     }
 
-    public Playlist(){
-
-    }
-
     public String getNom() {
         return nom;
     }

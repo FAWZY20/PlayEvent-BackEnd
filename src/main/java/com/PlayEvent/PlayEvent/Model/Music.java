@@ -11,20 +11,16 @@ public class Music {
 
     private String album;
 
+    private String cover;
+
     private String duree;
 
-    private String genre;
-
-    public Music(String titre, String artiste, String album, String duree, String genre, String fichier) {
+    public Music(String titre, String artiste, String album, String cover, String duree) {
         this.titre = titre;
         this.artiste = artiste;
         this.album = album;
+        this.cover = cover;
         this.duree = duree;
-        this.genre = genre;
-    }
-
-    public Music(){
-
     }
 
     public String getTitre() {
@@ -51,20 +47,20 @@ public class Music {
         this.album = album;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     public String getDuree() {
         return duree;
     }
 
     public void setDuree(String duree) {
         this.duree = duree;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
 }
