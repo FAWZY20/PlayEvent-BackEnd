@@ -24,7 +24,7 @@ public class PlaylistService implements PlaylistControler {
     public ResponseEntity<?> addPlaylist(Playlist playlist) {
         try {
             playlistRepository.save(playlist);
-            return new ResponseEntity<>("playlist à etait ajouter", HttpStatus.OK);
+            return new ResponseEntity<>(playlist, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>("playlist n'a reussi a etre ajouter", HttpStatus.INTERNAL_SERVER_ERROR);
         }
