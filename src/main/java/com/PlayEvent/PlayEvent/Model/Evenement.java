@@ -11,7 +11,7 @@ import java.util.List;
 public class Evenement {
 
     @Id
-    private String id;
+    private final String id;
 
     private String nom;
 
@@ -33,7 +33,7 @@ public class Evenement {
 
     private String status;
 
-    public Evenement(String nom,
+    public Evenement(String id, String nom,
                      LocalDate date,
                      LocalTime heureDébut,
                      LocalTime heureFin,
@@ -43,6 +43,7 @@ public class Evenement {
                      List<String> utilisateurID,
                      String animateurID,
                      String status) {
+        this.id = id;
         this.nom = nom;
         this.date = date;
         this.heureDébut = heureDébut;
@@ -57,10 +58,6 @@ public class Evenement {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNom() {

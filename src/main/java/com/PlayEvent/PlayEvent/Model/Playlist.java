@@ -8,7 +8,7 @@ import java.util.List;
 public class Playlist {
 
     @Id
-    private String id;
+    private final String id;
 
     private String nom;
 
@@ -17,7 +17,8 @@ public class Playlist {
     private List<Music> musique;
 
 
-    public Playlist(String nom, String description, List<Music> musique) {
+    public Playlist(String id, String nom, String description, List<Music> musique) {
+        this.id = id;
         this.nom = nom;
         this.description = description;
         this.musique = musique;
@@ -45,6 +46,10 @@ public class Playlist {
 
     public void setMusique(List<Music> musique) {
         this.musique = musique;
+    }
+
+    public String getId() {
+        return id;
     }
 
 }
