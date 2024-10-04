@@ -17,10 +17,13 @@ public class Utilisateur {
 
     private String pwd;
 
-    private String role;
+    private Role role;
 
+    public enum Role{
+        ADMIN, ANIMATEUR, INVITEE
+    }
 
-    public Utilisateur(String id, String nom, String prenom, String mail, String pwd, String role) {
+    public Utilisateur(String id, String nom, String prenom, String mail, String pwd, Role role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -66,11 +69,11 @@ public class Utilisateur {
         this.pwd = pwd;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

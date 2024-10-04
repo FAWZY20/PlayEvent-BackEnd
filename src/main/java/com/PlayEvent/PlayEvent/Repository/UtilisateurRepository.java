@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface UtilisateurRepository extends MongoRepository<Utilisateur, String> {
@@ -17,4 +19,6 @@ public interface UtilisateurRepository extends MongoRepository<Utilisateur, Stri
 
     @Aggregation(pipeline = {"{ '$match': { 'mail': ?0, 'pwd': ?1 } }", "{ '$project': { 'mail': 1, 'nom': 1, 'prenom': 1, '_id': 1, } }" })
     Utilisateur getByMailAndPassword(String mail, String password);
+
+    List<Utilisateur> findUtilisateurByRole(String userRole);
 }

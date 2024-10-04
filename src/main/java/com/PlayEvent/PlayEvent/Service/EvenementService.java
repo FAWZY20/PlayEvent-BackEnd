@@ -22,13 +22,13 @@ public class EvenementService implements EvenementControler {
     }
 
     @Override
-    public ResponseEntity<String> addEvent(Evenement evenement) {
+    public ResponseEntity<?> addEvent(Evenement evenement) {
         try {
             evenementRepository.save(evenement);
-            return new ResponseEntity<>("evenement ajoutee", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>("evenement n'a pas pu etre ajoutee", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

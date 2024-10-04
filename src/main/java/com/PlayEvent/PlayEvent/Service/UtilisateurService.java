@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import java.util.List;
 
 @Service
 public class UtilisateurService implements UtilisateurControler {
@@ -32,6 +31,16 @@ public class UtilisateurService implements UtilisateurControler {
         ObjectId objectId = new ObjectId(userId);
         Utilisateur utilisateur = utilisateurRepository.findUtilisateurById(objectId);
         return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getUserByRole(String userRole) {
+        try{
+            List<Utilisateur> utilisateur =  utilisateurRepository.findUtilisateurByRole(userRole);
+            return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("il y'a un eu un probleme durant la recherche des animateur", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override

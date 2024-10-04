@@ -27,11 +27,15 @@ public class Evenement {
 
     private Playlist playlist;
 
-    private List<String> utilisateurID;
+    private List<String> inviteeEmail;
 
     private String animateurID;
 
-    private String status;
+    private Statut status;
+
+    public enum Statut{
+        EN_ATTENTE ,EN_COUR, FINI
+    }
 
     public Evenement(String id, String nom,
                      LocalDate date,
@@ -39,10 +43,10 @@ public class Evenement {
                      LocalTime heureFin,
                      String lieu,
                      String description,
-                     Playlist musique,
-                     List<String> utilisateurID,
+                     Playlist playlist,
+                     List<String> inviteeEmail,
                      String animateurID,
-                     String status) {
+                     Statut status) {
         this.id = id;
         this.nom = nom;
         this.date = date;
@@ -50,8 +54,8 @@ public class Evenement {
         this.heureFin = heureFin;
         this.lieu = lieu;
         this.description = description;
-        this.playlist = musique;
-        this.utilisateurID = utilisateurID;
+        this.playlist = playlist;
+        this.inviteeEmail = inviteeEmail;
         this.animateurID = animateurID;
         this.status = status;
     }
@@ -108,12 +112,12 @@ public class Evenement {
         this.description = description;
     }
 
-    public List<String> getUtilisateurID() {
-        return utilisateurID;
+    public List<String> getInviteeEmail() {
+        return inviteeEmail;
     }
 
-    public void setUtilisateurID(List<String> utilisateurID) {
-        this.utilisateurID = utilisateurID;
+    public void setInviteeEmail(List<String> inviteeEmail) {
+        this.inviteeEmail = inviteeEmail;
     }
 
     public String getAnimateurID() {
@@ -131,11 +135,11 @@ public class Evenement {
     public void setPlaylist(Playlist playlist) {
         this.playlist = playlist;
     }
-    public String getStatus() {
+    public Statut getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Statut status) {
         this.status = status;
     }
 

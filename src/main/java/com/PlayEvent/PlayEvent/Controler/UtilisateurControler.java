@@ -14,6 +14,9 @@ public interface UtilisateurControler {
     @GetMapping("/user/{userId}")
      ResponseEntity<Utilisateur> getUser(@PathVariable("userId") String userId);
 
+    @GetMapping("/user/role/{userRole}")
+    ResponseEntity<?> getUserByRole(@PathVariable("userRole") String userRole);
+
     @PatchMapping("/user/{userId}")
      ResponseEntity<String> updatePassword(@PathVariable("userId") String userid, @RequestBody String pwd);
 

@@ -10,7 +10,7 @@ import java.util.List;
 public interface EvenementControler {
 
     @PostMapping("/evenement")
-    ResponseEntity<String> addEvent(@RequestBody Evenement evenement);
+    ResponseEntity<?> addEvent(@RequestBody Evenement evenement);
 
     @GetMapping("/evenement")
     ResponseEntity<List<Evenement>> getAllEvent();
