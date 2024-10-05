@@ -18,10 +18,10 @@ public interface EvenementControler {
     @GetMapping("/evenement/{eventId}")
     ResponseEntity<Evenement> getEvent(@PathVariable("eventId") String eventId);
 
-    @PatchMapping("/evenement")
-    ResponseEntity<String> updateDateEvent(@RequestBody Evenement evenement);
+    @PutMapping("/evenement")
+    ResponseEntity<String> updateEvent(@RequestBody Evenement evenement);
 
     @DeleteMapping("/evenement/{eventId}")
-    ResponseEntity<String> deleteEvent(@PathVariable("eventId") String eventId);
+    ResponseEntity<?> deleteEvent(@PathVariable("eventId") String eventId);
 
 }

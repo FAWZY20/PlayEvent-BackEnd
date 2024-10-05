@@ -45,17 +45,32 @@ public class EvenementService implements EvenementControler {
     }
 
     @Override
-    public ResponseEntity<String> updateDateEvent(Evenement evenement) {
+    public ResponseEntity<String> updateEvent(Evenement evenement) {
         Evenement evt = evenementRepository.findEvenementById(evenement.getId());
+
+        evt.setNom(evenement.getNom());
         evt.setDate(evenement.getDate());
+        evt.setHeureDebut(evenement.getHeureDebut());
+        evt.setHeureFin(evenement.getHeureFin());
+        evt.setLieu(evenement.getLieu());
+        evt.setPlaylist(evenement.getPlaylist());
+        evt.setAnimateurID(evenement.getAnimateurID());
+        evt.setDescription(evenement.getDescription());
+        evt.setInviteeEmail(evenement.getInviteeEmail());
+
         evenementRepository.save(evt);
-        return null;
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<String> deleteEvent(String eventId) {
-        evenementRepository.deleteById(eventId);
-        return new ResponseEntity<>("l'evenement a bien etait supprimee", HttpStatus.OK);
+    public ResponseEntity<?> deleteEvent(String eventId) {
+        try {
+            evenementRepository.deleteById(eventId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

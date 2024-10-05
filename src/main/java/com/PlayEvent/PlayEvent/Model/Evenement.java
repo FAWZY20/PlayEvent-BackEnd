@@ -17,7 +17,7 @@ public class Evenement {
 
     private LocalDate date;
 
-    private LocalTime heureDébut;
+    private LocalTime heureDebut;
 
     private LocalTime  heureFin;
 
@@ -39,7 +39,7 @@ public class Evenement {
 
     public Evenement(String id, String nom,
                      LocalDate date,
-                     LocalTime heureDébut,
+                     LocalTime heureDebut,
                      LocalTime heureFin,
                      String lieu,
                      String description,
@@ -50,7 +50,7 @@ public class Evenement {
         this.id = id;
         this.nom = nom;
         this.date = date;
-        this.heureDébut = heureDébut;
+        this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
         this.description = description;
@@ -80,12 +80,12 @@ public class Evenement {
         this.date = date;
     }
 
-    public LocalTime getHeureDébut() {
-        return heureDébut;
+    public LocalTime getHeureDebut() {
+        return heureDebut;
     }
 
-    public void setHeureDébut(LocalTime heureDébut) {
-        this.heureDébut = heureDébut;
+    public void setHeureDebut(LocalTime heureDebut) {
+        this.heureDebut = heureDebut;
     }
 
     public LocalTime getHeureFin() {
