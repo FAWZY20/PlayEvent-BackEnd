@@ -3,6 +3,7 @@ package com.PlayEvent.PlayEvent.Service;
 import com.PlayEvent.PlayEvent.Controler.UtilisateurControler;
 import com.PlayEvent.PlayEvent.Model.Utilisateur;
 import com.PlayEvent.PlayEvent.Repository.UtilisateurRepository;
+import jdk.jshell.execution.Util;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ public class UtilisateurService implements UtilisateurControler {
     }
 
     @Override
-    public ResponseEntity<String> postUser(Utilisateur utilisateur) {
+    public ResponseEntity<?> postUser(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
-        return new ResponseEntity<>("l'utilisateur a bien etait ajouter", HttpStatus.OK);
+        return new ResponseEntity<>(utilisateur, HttpStatus.OK);
     }
 
     @Override
@@ -31,6 +32,12 @@ public class UtilisateurService implements UtilisateurControler {
         ObjectId objectId = new ObjectId(userId);
         Utilisateur utilisateur = utilisateurRepository.findUtilisateurById(objectId);
         return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Utilisateur>> getAllUser() {
+     List<Utilisateur> utilisateurs = utilisateurRepository.findAll();
+     return  new ResponseEntity<>(utilisateurs, HttpStatus.OK);
     }
 
     @Override
@@ -44,8 +51,19 @@ public class UtilisateurService implements UtilisateurControler {
     }
 
     @Override
+    public ResponseEntity<?> getUserByMail(String userMail) {
+        try{
+            Utilisateur utilisateur =  utilisateurRepository.findUtilisateurByMail(userMail);
+            return new ResponseEntity<>(utilisateur, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("il y'a un eu un probleme durant la recherche des utilisateur", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
     public ResponseEntity<String> updatePassword( String userid, String pwd) {
         ObjectId objectId = new ObjectId(userid);
+
         Utilisateur utilisateur = utilisateurRepository.findUtilisateurById(objectId);
         utilisateur.setPwd(pwd);
         utilisateurRepository.save(utilisateur);
@@ -53,13 +71,22 @@ public class UtilisateurService implements UtilisateurControler {
     }
 
     @Override
+    public ResponseEntity<?> updateRole(String userid, String role) {
+        ObjectId objectId = new ObjectId(userid);
+        Utilisateur utilisateur = utilisateurRepository.findUtilisateurById(objectId);
+        utilisateur.setRole(Utilisateur.Role.valueOf(role));
+        utilisateurRepository.save(utilisateur);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<String> deleteUser(String userId) {
         try{
             ObjectId objectId = new ObjectId(userId);
             utilisateurRepository.deleteById(objectId);
-            return new ResponseEntity<>("l'utilisateur à etait supprimer", HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>("l'utilisateur n'existe pas" , HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
