@@ -2,6 +2,7 @@ package com.PlayEvent.PlayEvent.Controler;
 
 
 import com.PlayEvent.PlayEvent.Model.Utilisateur;
+import jdk.jshell.execution.Util;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,9 @@ public interface UtilisateurControler {
     @PatchMapping("/user/role/{userId}")
     ResponseEntity<?> updateRole(@PathVariable("userId") String userid, @RequestBody String role);
 
+    @PutMapping("/user/{userId}")
+    ResponseEntity<?> updateUtilisateur(@PathVariable("userId") String userid, @RequestBody Utilisateur utilisateur);
 
     @DeleteMapping("/user/{userId}")
-     ResponseEntity<String> deleteUser(@PathVariable("userId") String userId);
+    ResponseEntity<String> deleteUser(@PathVariable("userId") String userId);
 }

@@ -80,6 +80,22 @@ public class UtilisateurService implements UtilisateurControler {
     }
 
     @Override
+    public ResponseEntity<?> updateUtilisateur(String userid, Utilisateur utilisateur) {
+        ObjectId objectId = new ObjectId(userid);
+        Utilisateur uti = utilisateurRepository.findUtilisateurById(objectId);
+
+        uti.setMail(utilisateur.getMail());
+        uti.setPrenom(utilisateur.getPrenom());
+        uti.setNom(utilisateur.getNom());
+        uti.setPwd(utilisateur.getPwd());
+        uti.setRole(utilisateur.getRole());
+
+        utilisateurRepository.save(utilisateur);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<String> deleteUser(String userId) {
         try{
             ObjectId objectId = new ObjectId(userId);
