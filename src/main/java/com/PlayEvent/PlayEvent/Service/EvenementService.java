@@ -6,25 +6,30 @@ import com.PlayEvent.PlayEvent.Repository.EvenementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EvenementService implements EvenementControler {
 
     private final EvenementRepository evenementRepository;
+    private final JavaMailSender javaMailSender;
 
     @Autowired
-    public EvenementService(EvenementRepository evenementRepository) {
+    public EvenementService(EvenementRepository evenementRepository, JavaMailSender javaMailSender)
+    {
         this.evenementRepository = evenementRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     @Override
     public ResponseEntity<?> addEvent(Evenement evenement) {
         try {
             evenementRepository.save(evenement);
+            sendSimpleMessage(evenement);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
@@ -72,5 +77,26 @@ public class EvenementService implements EvenementControler {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    public void sendSimpleMessage(Evenement evenement) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        for (String email : evenement.getInviteeEmail()) {
+            message.setTo(email);
+            message.setSubject("Voici votre invitation pour l'evenement : " + evenement.getNom());
+
+            String body = buildEmailBody(evenement);
+            message.setText(body);
+
+            javaMailSender.send(message);
+        }
+    }
+
+    public String buildEmailBody(Evenement evenement){
+        String body = "voici votre event";
+        return body;
+    }
+
 
 }
