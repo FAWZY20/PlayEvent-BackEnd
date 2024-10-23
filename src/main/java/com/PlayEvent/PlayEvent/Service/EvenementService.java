@@ -94,7 +94,16 @@ public class EvenementService implements EvenementControler {
     }
 
     public String buildEmailBody(Evenement evenement){
-        String body = "voici votre event";
+        String body = "Bonjour,\n\n" +
+                "Nous sommes heureux de vous inviter à participer à l'événement suivant :\n\n" +
+                "Titre de l'événement : " + evenement.getNom() + "\n" +
+                "Date : " + evenement.getDate() + "\n" +
+                "Lieu : " + evenement.getLieu() + "\n\n" +
+                "Vous pouvez accéder a l'event avec le lien suivant :\n" +
+                "http://localhost:4200/event/" + evenement.getId() + "\n\n" +
+                "Nous espérons vous y voir nombreux !\n\n" +
+                "Cordialement,\n" +
+                "L'équipe d'organisation";
         return body;
     }
 
